@@ -1,6 +1,5 @@
 import React from 'react';
 import './LocationSearch.css';
-const API_KEY = "4ed8b289a371e472ec463ab975967b31"
 
 export default class LocationSearch extends React.Component {
 
