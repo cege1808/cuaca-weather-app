@@ -9,6 +9,7 @@ export default class Weather extends React.Component {
     super(props);
     this.state = {
       city: '',
+      country: '',
       current_temp: '',
       description: '',
     };
@@ -34,6 +35,7 @@ export default class Weather extends React.Component {
     .then(json => {
       console.log(json)
       this.setState({
+        country: json.sys.country,
         current_temp: json.main.temp,
         description: json.weather[0].description
       })
