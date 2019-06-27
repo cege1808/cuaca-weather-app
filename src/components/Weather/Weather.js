@@ -1,7 +1,7 @@
 import React from 'react';
 import './Weather.css';
 import LocationSearch from '../LocationSearch/LocationSearch.js';
-const API_KEY = "4ed8b289a371e472ec463ab975967b31"
+const DARKSKY_API_KEY = "0494a26ed44fe957270c49feb96e1c34"
 
 
 export default class Weather extends React.Component {
@@ -10,13 +10,20 @@ export default class Weather extends React.Component {
     this.state = {
       city: '',
       country: '',
-      current_temp: '',
+      sunrise: '',
+      sunset: '',
       description: '',
+      current_temp: '',
+      current_humidity: '',
+      current_windspeed: '',
+      current_precip: '',
+      forecast_temp: [],
+      forecast_humidity: [],
+      forecast_precip: [],
     };
     this.getWeather = this.getWeather.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleCurrentTemp = this.handleCurrentTemp.bind(this);
-    this.handleDescription = this.handleDescription.bind(this);
   }
 
   handleLocationChange(city){
@@ -24,8 +31,9 @@ export default class Weather extends React.Component {
   }
 
   async getWeather() {
-    //CURRENT
-    await fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&APPID=${API_KEY}`, {
+    let cors_uri = `https://cors-anywhere.herokuapp.com/`;
+    let uri = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/37.8267,-122.4233?exclude=[minutely,flags]&units=si`;
+    await fetch(cors_uri + uri, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -34,22 +42,16 @@ export default class Weather extends React.Component {
     .then(response => response.json())
     .then(json => {
       console.log(json)
+      let current = json.currently
       this.setState({
-        country: json.sys.country,
-        current_temp: json.main.temp,
-        description: json.weather[0].description
+        // country: json.sys.country,
+        current_temp: current.temperature,
+        current_humidity: current.humidity,
+        current_windspeed: current.windSpeed,
+        current_precip: current.precipProbability,
+        description: current.summary
       })
     })
-    .catch(err => console.log(err));
-
-    // FORECAST
-    await fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&APPID=${API_KEY}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      }
-    }).then(response => response.json())
-    .then(json => console.log(json))
     .catch(err => console.log(err));
   }
 
@@ -61,19 +63,19 @@ export default class Weather extends React.Component {
     return text.charAt(0).toUpperCase() + text.slice(1)
   }
 
+  capitalizePhrase(phrase){
+    let phr_arr = phrase.split(' ');
+    phr_arr = phr_arr.map(word => this.capitalize(word));
+    return phr_arr.join(' ');
+  }
+
   handleCurrentTemp(){
-    let temp = '';
     if(this.state.current_temp !== ''){
-      temp = this.convertKelvinToCelcius(this.state.current_temp);
-      return temp + ` \u00b0C`;
+      return this.state.current_temp + ` \u00b0C`;
     }
   }
 
-  handleDescription(){
-    let desc_arr = this.state.description.split(' ');
-    desc_arr = desc_arr.map(word => this.capitalize(word));
-    return desc_arr.join(' ');
-  }
+
 
   render(){
     return (
@@ -82,7 +84,7 @@ export default class Weather extends React.Component {
         Weather Results
         <h1>{this.capitalize(this.state.city)}</h1>
         <h1>{this.handleCurrentTemp()}</h1>
-        <h1>{this.handleDescription()}</h1>
+        <h1>{this.state.description}</h1>
       </div>
       )
   }
