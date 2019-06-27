@@ -78,7 +78,7 @@ export default class Weather extends React.Component {
 
   render(){
     return (
-      <div>
+      <div className="purple-gradient">
         <LocationSearch loadWeather={this.getWeather} onLocationChange={this.handleLocationChange} />
         Weather Results
         <h1>{this.capitalize(this.state.address.split(', ')[0])}</h1>
