@@ -8,10 +8,9 @@ export default class Weather extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      city: '',
-      country: '',
-      sunrise: '',
-      sunset: '',
+      lat: '',
+      lng: '',
+      address: '',
       description: '',
       current_temp: '',
       current_humidity: '',
@@ -26,13 +25,14 @@ export default class Weather extends React.Component {
     this.handleCurrentTemp = this.handleCurrentTemp.bind(this);
   }
 
-  handleLocationChange(city){
-    this.setState({city: city});
+  handleLocationChange(lat, lng, address){
+    this.setState({lat: lat, lng: lng, address: address});
+    this.getWeather();
   }
 
   async getWeather() {
     let cors_uri = `https://cors-anywhere.herokuapp.com/`;
-    let uri = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/37.8267,-122.4233?exclude=[minutely,flags]&units=si`;
+    let uri = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${this.state.lat},${this.state.lng}?exclude=[minutely,flags]&units=si`;
     await fetch(cors_uri + uri, {
       headers: {
         'Content-Type': 'application/json',
@@ -76,13 +76,12 @@ export default class Weather extends React.Component {
   }
 
 
-
   render(){
     return (
       <div>
         <LocationSearch loadWeather={this.getWeather} onLocationChange={this.handleLocationChange} />
         Weather Results
-        <h1>{this.capitalize(this.state.city)}</h1>
+        <h1>{this.capitalize(this.state.address.split(', ')[0])}</h1>
         <h1>{this.handleCurrentTemp()}</h1>
         <h1>{this.state.description}</h1>
       </div>
