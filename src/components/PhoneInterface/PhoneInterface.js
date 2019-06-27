@@ -1,5 +1,6 @@
 import React from 'react';
-import { TopAppBarIcon,  TopAppBarRow, TopAppBarSection } from '@material/react-top-app-bar';
+import {Cell, Row} from '@material/react-layout-grid';
+import { TopAppBarFixedAdjust, TopAppBarIcon,  TopAppBarRow, TopAppBarSection, TopAppBarTitle } from '@material/react-top-app-bar';
 import MaterialIcon from '@material/react-material-icon';
 import './PhoneInterface.scss';
 
@@ -9,7 +10,7 @@ export default class PhoneInterface extends React.Component {
     this.state = {mode: 'regular'}
   }
 
-  render(){
+  renderPhoneBar(){
     return (
       <TopAppBarRow>
         <TopAppBarSection align='start' className="skinny-padding">
@@ -29,6 +30,48 @@ export default class PhoneInterface extends React.Component {
           </TopAppBarIcon>
         </TopAppBarSection>
       </TopAppBarRow>
+    )
+  }
+
+  renderAppBar(){
+    return (
+      <TopAppBarRow>
+        <TopAppBarSection align='start' className="skinny-padding">
+          <TopAppBarIcon navIcon tabIndex={0}>
+            <MaterialIcon hasRipple icon='menu' className='rounded' onClick={() => console.log('click')}/>
+          </TopAppBarIcon>
+        </TopAppBarSection>
+        <TopAppBarSection className="skinny-padding">
+          <TopAppBarTitle className="weather-title">
+            <p>Weather</p>
+          </TopAppBarTitle>
+        </TopAppBarSection>
+        <TopAppBarSection align='end' role='toolbar' className="skinny-padding">
+          <TopAppBarIcon actionItem tabIndex={1}>
+            <MaterialIcon
+              aria-label="add location"
+              hasRipple
+              icon='search'
+              onClick={() => console.log('location')}
+            />
+          </TopAppBarIcon>
+        </TopAppBarSection>
+      </TopAppBarRow>
+    )
+  }
+
+  render(){
+    return (
+      <Row>
+        <Cell desktopColumns={4} phoneColumns={0} tabletColumns={2}></Cell>
+        <Cell desktopColumns={4} phoneColumns={4} tabletColumns={4} align="middle" className="main mdc-elevation--z10 mdc-elevation-transition">
+          <TopAppBarFixedAdjust className="yellow weather-bar">
+            {this.renderPhoneBar()}
+            {this.renderAppBar()}
+            {this.props.children}
+          </TopAppBarFixedAdjust>
+        </Cell>
+      </Row>
       )
   }
 }
