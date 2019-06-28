@@ -3,6 +3,8 @@
 @import '@material/react-material-icon/index.scss';
 @import "@material/elevation/mdc-elevation";
 @import '@material/react-fab/index.scss';
+@import '@material/react-list/index.scss';
+@import '@material/react-text-field/index.scss';
 
 $bg-white: white;
 $bg-lightgrey: #F6f6f6;
@@ -114,3 +116,17 @@ code {
 .weather-title{
   padding-left: 24%;
 }
+
+.hidden { display:none; }
+
+.search-width{
+  width: 80%;
+}
+
+.search-bar-item{
+  display: inline-block;
+}
+
+// .search-close-icon{
+//   position: absolute;
+// }

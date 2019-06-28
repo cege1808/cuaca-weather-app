@@ -1,5 +1,7 @@
 import React from 'react';
 import PlacesAutocomplete, {geocodeByAddress} from 'react-places-autocomplete';
+import List, {ListItem, ListItemText} from '@material/react-list';
+import TextField, {Input} from '@material/react-text-field';
 import './LocationSearch.css';
 
 export default class LocationSearch extends React.Component {
@@ -31,15 +33,17 @@ export default class LocationSearch extends React.Component {
   render(){
     const renderInput = ({ getInputProps, getSuggestionItemProps, suggestions }) => (
       <div className="autocomplete-root">
-        <input className="form-control" {...getInputProps()} />
-        <div className="autocomplete-dropdown-container">
+        <TextField label="Search Location" outlined="true" fullWidth="true">
+          <Input className="form-control" {...getInputProps()} />
+        </TextField>
+        <List className="autocomplete-dropdown-container">
           {suggestions.map(suggestion => (
-            <div {...getSuggestionItemProps(suggestion)} className={suggestion.active
+            <ListItem {...getSuggestionItemProps(suggestion)} className={suggestion.active
                   ? 'suggestion-item active' : 'suggestion-item'}>
-              <span>{suggestion.description}</span>
-            </div>
+              <ListItemText primaryText={suggestion.description} />
+            </ListItem>
           ))}
-        </div>
+        </List>
       </div>
     );
     const searchOptions = {types: ['(cities)']}
