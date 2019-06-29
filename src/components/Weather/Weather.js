@@ -1,4 +1,5 @@
 import React from 'react';
+import {Cell, Row} from '@material/react-layout-grid';
 import Tab from '@material/react-tab';
 import TabBar from '@material/react-tab-bar';
 import './Weather.css';
@@ -21,14 +22,18 @@ export default class Weather extends React.Component {
       current_uv: '',
       current_visibility: '',
       forecast_temp: [],
-      forecast_humidity: [],
       forecast_precip: [],
+      forecast_wind: [],
     };
     this.getWeather = this.getWeather.bind(this);
     this.handleActiveIndexUpdate = this.handleActiveIndexUpdate.bind(this);
     this.handleCurrentTemp = this.handleCurrentTemp.bind(this);
     this.handleCurrentUV = this.handleUV.bind(this);
     this.handleAddress = this.handleAddress.bind(this);
+    this.renderForecastTemp = this.renderForecastTemp.bind(this);
+    this.renderForecastPrecip = this.renderForecastPrecip.bind(this);
+    this.renderForecastWind = this.renderForecastWind.bind(this);
+    this.renderForecast = this.renderForecast.bind(this);
   }
 
   componentDidMount(){
@@ -59,6 +64,18 @@ export default class Weather extends React.Component {
     .then(json => {
       console.log(json)
       let current = json.currently
+      let forecast = json.daily.data
+      let temp_arr = [];
+      let precip_arr = [];
+      let wind_arr = [];
+      let time_arr = [];
+      for(let i=0; i<4; i++){
+        // Data array starts today. We need the next 4 days
+        temp_arr[i] = [forecast[i+1].temperatureLow, forecast[i+1].temperatureHigh]
+        precip_arr[i] = forecast[i+1].precipProbability;
+        wind_arr[i] = forecast[i+1].windSpeed;
+        time_arr[i] = forecast[i+1].time*1000; //Time given in miliseconds and we need seconds
+      }
       this.setState({
         datetime: current.time,
         current_temp: current.temperature.toFixed(0),
@@ -67,7 +84,11 @@ export default class Weather extends React.Component {
         current_precip: current.precipProbability,
         current_uv: current.uvIndex,
         current_visibility: current.visibility,
-        description: current.summary
+        description: current.summary,
+        forecast_datetime: time_arr,
+        forecast_temp: temp_arr,
+        forecast_precip: precip_arr,
+        forecast_wind: wind_arr,
       })
     })
     .catch(err => console.log(err));
@@ -114,6 +135,63 @@ export default class Weather extends React.Component {
     return ''
   }
 
+  getDay(time){
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let index = new Date(time).getDay()
+    return days[index];
+  }
+
+  renderForecastTemp(){
+    let temps = [];
+    for(const [index, value] of this.state.forecast_temp.entries()){
+      temps.push(
+        <Cell columns={3} key={'ftemp-' + index}>
+          <p><strong>{this.getDay(this.state.forecast_datetime[index])}</strong></p>
+          <p>{value[0].toFixed(0)} - {value[1].toFixed(0)}</p>
+        </Cell>
+      )
+    }
+    return <Row>{temps}</Row>
+  }
+
+  renderForecastPrecip(){
+    let precips = [];
+    for(const [index, value] of this.state.forecast_precip.entries()){
+      precips.push(
+        <Cell columns={3} key={'fprecip-' + index}>
+          <p><strong>{this.getDay(this.state.forecast_datetime[index])}</strong></p>
+          <p>{(value*100).toFixed(0)}%</p>
+        </Cell>
+      )
+    }
+    return <Row>{precips}</Row>
+  }
+
+  renderForecastWind(){
+    let winds = [];
+    for(const [index, value] of this.state.forecast_wind.entries()){
+      winds.push(
+        <Cell columns={3} key={'fwind-' + index}>
+          <p><strong>{this.getDay(this.state.forecast_datetime[index])}</strong></p>
+          <p>{(value*3600/1000).toFixed(0)}km/h</p>
+        </Cell>
+      )
+    }
+    return <Row>{winds}</Row>
+  }
+
+  renderForecast(){
+    if(this.state.activeIndex === 0){
+      return this.renderForecastTemp();
+    } else if(this.state.activeIndex === 1){
+      return this.renderForecastPrecip();
+    } else {
+      return this.renderForecastWind();
+    }
+  }
+
+
+
   render(){
     return (
       <div>
@@ -132,11 +210,14 @@ export default class Weather extends React.Component {
           </TabBar>
         </div>
         <div className="current-detail">
-          <p>Precipitation {this.state.current_precip*100}%</p>
+          <p>Precipitation {(this.state.current_precip*100).toFixed(0)}%</p>
           <span>&#09;&middot;&#09;</span>
-          <p>Humidity {this.state.current_humidity*100}%</p>
+          <p>Humidity {(this.state.current_humidity*100).toFixed(0)}%</p>
           <span>&#09;&middot;&#09;</span>
           <p>Wind {(this.state.current_windspeed*3600/1000).toFixed(0)}km/h</p>
+        </div>
+        <div className="forecast">
+          {this.renderForecast()}
         </div>
       </div>
       )
