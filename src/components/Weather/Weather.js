@@ -7,6 +7,7 @@ export default class Weather extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      datetime: '',
       lat: '',
       lng: '',
       address: '',
@@ -15,16 +16,21 @@ export default class Weather extends React.Component {
       current_humidity: '',
       current_windspeed: '',
       current_precip: '',
+      current_uv: '',
+      current_visibility: '',
       forecast_temp: [],
       forecast_humidity: [],
       forecast_precip: [],
     };
     this.getWeather = this.getWeather.bind(this);
     this.handleCurrentTemp = this.handleCurrentTemp.bind(this);
+    this.handleCurrentUV = this.handleUV.bind(this);
+    this.handleAddress = this.handleAddress.bind(this);
   }
 
   componentDidMount(){
     this.setState({lat: this.props.lat, lng: this.props.lng, address: this.props.address})
+    this.getWeather();
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -48,10 +54,13 @@ export default class Weather extends React.Component {
       console.log(json)
       let current = json.currently
       this.setState({
-        current_temp: current.temperature,
+        datetime: current.time,
+        current_temp: current.temperature.toFixed(0),
         current_humidity: current.humidity,
         current_windspeed: current.windSpeed,
         current_precip: current.precipProbability,
+        current_uv: current.uvIndex,
+        current_visibility: current.visibility,
         description: current.summary
       })
     })
@@ -74,7 +83,7 @@ export default class Weather extends React.Component {
 
   handleCurrentTemp(){
     if(this.state.current_temp !== ''){
-      return this.state.current_temp + ` \u00b0C`;
+      return this.state.current_temp;
     }
   }
 
@@ -85,12 +94,30 @@ export default class Weather extends React.Component {
     return ''
   }
 
+  handleUV(){
+    if(this.state.current_uv !== ''){
+      return `UV Index ${this.state.current_uv}`
+    }
+    return ''
+  }
+
+  handleVisibility(){
+    if(this.state.current_uv !== ''){
+      return `Visibility ${this.state.current_visibility.toFixed(0)} km`
+    }
+    return ''
+  }
+
   render(){
     return (
       <div>
-        <h1>{this.handleAddress()}</h1>
-        <h1>{this.handleCurrentTemp()}</h1>
-        <h1>{this.state.description}</h1>
+        <div className="current-info">
+          <h1 className="current-temp">{this.handleCurrentTemp()}<sup className="current-tempdeg">{`\u00b0`}</sup></h1>
+          <h3 className="no-margin current-desc">{this.state.description}</h3>
+          <p className="no-margin current-address">{this.handleAddress()}</p>
+          <p className="current-uv">{this.handleUV()}</p>
+          <p className="no-margin current-visibility">{this.handleVisibility()}</p>
+        </div>
       </div>
       )
   }

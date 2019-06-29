@@ -10,26 +10,30 @@ export default class PhoneInterface extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      mode: 'regular',
       isSearching: false,
-      lat: '',
-      lng: '',
-      address: ''
+      lat: 49.239623,
+      lng: -123.110912,
+      address: 'Vancouver, Canada'
     }
     this.toggleSearch = this.toggleSearch.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
   }
 
   handleLocationChange(lat, lng, address){
-    this.setState({lat: lat, lng: lng, address: address});
+    this.setState({lat: lat, lng: lng, address: address, isSearching: false});
   }
 
   renderPhoneBar(){
+    let today = new Date();
+    let hour = today.getHours();
+    let minute = today.getMinutes();
+    if(hour.toString().length === 1){ hour = '0' + hour }
+    if(minute.toString().length === 1){ minute = '0' + minute }
     return (
       <TopAppBarRow>
         <TopAppBarSection align='start' className="skinny-padding">
           <TopAppBarIcon>
-            <strong className="phone-icon time">9:14</strong>
+            <strong className="phone-icon time">{hour}:{minute}</strong>
           </TopAppBarIcon>
         </TopAppBarSection>
         <TopAppBarSection align='end' className="skinny-padding">
@@ -56,8 +60,8 @@ export default class PhoneInterface extends React.Component {
     return (
       <TopAppBarRow>
         <TopAppBarSection align='start'>
-          <TopAppBarIcon navIcon tabIndex={0}>
-            <MaterialIcon hasRipple icon='menu' className='rounded' onClick={() => console.log('click')}/>
+          <TopAppBarIcon navIcon className="non-pointer">
+            <MaterialIcon icon='cloud_queue' />
           </TopAppBarIcon>
         </TopAppBarSection>
         <TopAppBarSection>
@@ -66,7 +70,7 @@ export default class PhoneInterface extends React.Component {
           </TopAppBarTitle>
         </TopAppBarSection>
         <TopAppBarSection align='end' role='toolbar'>
-          <TopAppBarIcon actionItem tabIndex={1}>
+          <TopAppBarIcon actionItem>
             <MaterialIcon
               aria-label="add location"
               hasRipple
@@ -86,7 +90,7 @@ export default class PhoneInterface extends React.Component {
       <LocationSearch  onLocationChange={this.handleLocationChange} />
       </div>
       <TopAppBarSection align='end' role='toolbar' className="search-bar-item search-close-icon">
-          <TopAppBarIcon actionItem tabIndex={1}>
+          <TopAppBarIcon actionItem>
             <MaterialIcon
               aria-label="close search"
               hasRipple

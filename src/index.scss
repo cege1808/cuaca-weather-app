@@ -130,3 +130,40 @@ code {
 // .search-close-icon{
 //   position: absolute;
 // }
+
+.non-pointer{
+  cursor: default;
+}
+
+.current-temp{
+  font-size: 70px;
+  margin-bottom: 0;
+}
+
+.no-margin{
+  margin: 0;
+  padding: 1px;
+}
+
+.current-tempdeg{
+  font-size: 40px;
+  position: absolute;
+}
+
+.current-desc{
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.current-address{
+  font-size: 20px;
+}
+
+.current-uv{
+  margin-bottom: 0;
+  // color: grey;
+}
+
+.current-visibility{
+  color: grey;
+}
