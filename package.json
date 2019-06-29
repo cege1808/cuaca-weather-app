@@ -8,6 +8,7 @@
     "@material/react-layout-grid": "^0.14.0",
     "@material/react-list": "^0.14.0",
     "@material/react-material-icon": "^0.14.0",
+    "@material/react-tab-bar": "^0.14.0",
     "@material/react-text-field": "^0.14.0",
     "@material/react-top-app-bar": "^0.14.0",
     "node-sass": "^4.12.0",

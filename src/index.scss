@@ -5,6 +5,10 @@
 @import '@material/react-fab/index.scss';
 @import '@material/react-list/index.scss';
 @import '@material/react-text-field/index.scss';
+@import '@material/react-tab-bar/index.scss';
+@import '@material/react-tab-scroller/index.scss';
+@import '@material/react-tab/index.scss';
+@import '@material/react-tab-indicator/index.scss';
 
 $bg-white: white;
 $bg-lightgrey: #F6f6f6;
@@ -83,6 +87,7 @@ code {
   height: $bg-height;
   background-color: $bg-white;
   border-radius: 10px;
+  min-width: 460px;
 }
 
 .weather-bar{
@@ -138,6 +143,7 @@ code {
 .current-temp{
   font-size: 70px;
   margin-bottom: 0;
+  margin-top: 30px;
 }
 
 .no-margin{
@@ -165,5 +171,22 @@ code {
 }
 
 .current-visibility{
+  color: grey;
+}
+
+.tab-bar{
+  width: 100%;
+  margin-top: 70px;
+}
+
+.current-detail > p {
+  font-size: 15px;
+  display: inline-block;
+  color: grey;
+  padding: 10px 0;
+}
+
+.current-detail > span {
+  font-size: 30px;
   color: grey;
 }

@@ -1,12 +1,14 @@
 import React from 'react';
+import Tab from '@material/react-tab';
+import TabBar from '@material/react-tab-bar';
 import './Weather.css';
 const DARKSKY_API_KEY = "0494a26ed44fe957270c49feb96e1c34"
-
 
 export default class Weather extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      activeIndex: 0,
       datetime: '',
       lat: '',
       lng: '',
@@ -23,6 +25,7 @@ export default class Weather extends React.Component {
       forecast_precip: [],
     };
     this.getWeather = this.getWeather.bind(this);
+    this.handleActiveIndexUpdate = this.handleActiveIndexUpdate.bind(this);
     this.handleCurrentTemp = this.handleCurrentTemp.bind(this);
     this.handleCurrentUV = this.handleUV.bind(this);
     this.handleAddress = this.handleAddress.bind(this);
@@ -39,6 +42,9 @@ export default class Weather extends React.Component {
       this.getWeather();
     }
   }
+
+  handleActiveIndexUpdate(activeIndex) {this.setState({activeIndex: activeIndex})};
+
 
   async getWeather() {
     let cors_uri = `https://cors-anywhere.herokuapp.com/`;
@@ -117,6 +123,20 @@ export default class Weather extends React.Component {
           <p className="no-margin current-address">{this.handleAddress()}</p>
           <p className="current-uv">{this.handleUV()}</p>
           <p className="no-margin current-visibility">{this.handleVisibility()}</p>
+        </div>
+        <div className="tab-bar">
+          <TabBar activeIndex={this.state.activeIndex} handleActiveIndexUpdate={this.handleActiveIndexUpdate}>
+            <Tab><span className='mdc-tab__text-label'>Temperature</span></Tab>
+            <Tab><span className='mdc-tab__text-label'>Precipitation</span></Tab>
+            <Tab><span className='mdc-tab__text-label'>Wind</span></Tab>
+          </TabBar>
+        </div>
+        <div className="current-detail">
+          <p>Precipitation {this.state.current_precip*100}%</p>
+          <span>&#09;&middot;&#09;</span>
+          <p>Humidity {this.state.current_humidity*100}%</p>
+          <span>&#09;&middot;&#09;</span>
+          <p>Wind {(this.state.current_windspeed*3600/1000).toFixed(0)}km/h</p>
         </div>
       </div>
       )

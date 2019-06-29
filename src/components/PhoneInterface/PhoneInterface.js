@@ -59,17 +59,17 @@ export default class PhoneInterface extends React.Component {
   renderAppBar(){
     return (
       <TopAppBarRow>
-        <TopAppBarSection align='start'>
+        <TopAppBarSection align='start' className="skinny-padding">
           <TopAppBarIcon navIcon className="non-pointer">
             <MaterialIcon icon='cloud_queue' />
           </TopAppBarIcon>
         </TopAppBarSection>
-        <TopAppBarSection>
+        <TopAppBarSection className="skinny-padding">
           <TopAppBarTitle className="weather-title">
-            <p>Weather</p>
+            <p> Weather</p>
           </TopAppBarTitle>
         </TopAppBarSection>
-        <TopAppBarSection align='end' role='toolbar'>
+        <TopAppBarSection align='end' role='toolbar' className="skinny-padding">
           <TopAppBarIcon actionItem>
             <MaterialIcon
               aria-label="add location"
