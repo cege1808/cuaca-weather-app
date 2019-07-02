@@ -5,6 +5,7 @@ import TabBar from '@material/react-tab-bar';
 import { Chart } from "react-google-charts";
 import './Weather.css';
 const DARKSKY_API_KEY = "0494a26ed44fe957270c49feb96e1c34"
+const ICON_PATH = "/icons/amcharts_weather_icons_1.0.0/"
 
 export default class Weather extends React.Component {
   constructor(props){
@@ -177,6 +178,7 @@ export default class Weather extends React.Component {
       temps.push(
         <Cell columns={3} key={'ftemp-' + index}>
           <p><strong>{this.getDay(this.state.dforecast_datetime[index])}</strong></p>
+          <i><img src={ICON_PATH + '/' + 'animated' + '/' + 'cloudy-day-1.svg'} alt='weather-icon' /></i>
           <p>{value[0].toFixed(0)} - {value[1].toFixed(0)}</p>
         </Cell>
       )

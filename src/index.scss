@@ -1,3 +1,18 @@
+$white: white;
+$lightgrey: #F6f6f6;
+$purple: #8C77FF;
+$blue: #B9D7FF;
+$grey: #827F7F;
+$yellow: #F8CA4D;
+$bg-width: 500px;
+$bg-height: 900px;
+$purple-gradient: linear-gradient(#C1C1FF, #8972FF);
+$yellow-gradient: linear-gradient(to bottom left, #F8CA4D, #7C6527);
+$mdc-theme-primary: $purple;
+$mdc-theme-secondary: $yellow;
+$mdc-theme-on-primary: $blue;
+$mdc-theme-on-secondary: $lightgrey;
+
 @import '@material/react-layout-grid/index.scss';
 @import '@material/react-top-app-bar/index.scss';
 @import '@material/react-material-icon/index.scss';
@@ -9,13 +24,6 @@
 @import '@material/react-tab-scroller/index.scss';
 @import '@material/react-tab/index.scss';
 @import '@material/react-tab-indicator/index.scss';
-
-$bg-white: white;
-$bg-lightgrey: #F6f6f6;
-$bg-width: 500px;
-$bg-height: 900px;
-$bg-purple-gradient: linear-gradient(#C1C1FF, #8972FF);
-$bg-yellow-gradient: linear-gradient(to bottom left, #F8CA4D, #7C6527);;
 
 @font-face {
   font-family: 'Product Sans';
@@ -42,31 +50,31 @@ $bg-yellow-gradient: linear-gradient(to bottom left, #F8CA4D, #7C6527);;
 }
 
 .purple-gradient {
-  background-image: linear-gradient(#C1C1FF, #8972FF);
+  background-image: $purple-gradient;
 }
 
 .yellow-gradient {
-  background-image: linear-gradient(to bottom left, #F8CA4D, #7C6527);
+  background-image: $yellow-gradient;
 }
 
 .purple {
-  background-color: #8C77FF;
+  background-color: $purple;
 }
 
 .yellow {
-  background-color: #F8CA4D;
+  background-color: $yellow;
 }
 
 .blue {
-  background-color: #B9D7FF;
+  background-color: $blue;
 }
 
 .grey {
-  background-color: #827F7F;
+  background-color: $grey;
 }
 
 .lightgrey{
-  background-color: #F6f6f6;
+  background-color: $lightgrey;
 }
 
 body {
@@ -85,19 +93,19 @@ code {
 
 .main {
   height: $bg-height;
-  background-color: $bg-white;
+  background-color: $white;
   border-radius: 10px;
   min-width: 460px;
 }
 
 .weather-bar{
   padding: 0;
-  background-color: $bg-white;
+  background-color: $white;
   border-radius: 10px;
 }
 
 .weather-fab{
-  background-image: $bg-yellow-gradient;
+  background-image: $yellow-gradient;
   opacity: 10%;
   width: 300px;
   height: 300px;
@@ -177,6 +185,8 @@ code {
 .tab-bar{
   width: 100%;
   margin-top: 70px;
+  font: ProductSans;
+  color:$purple;
 }
 
 .current-detail > p {
