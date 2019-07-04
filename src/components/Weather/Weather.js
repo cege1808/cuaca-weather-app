@@ -30,6 +30,7 @@ export default class Weather extends React.Component {
       dforecast_temp: [],
       dforecast_precip: [],
       dforecast_wind: [],
+      dforecast_icon: [],
       hforecast_temp: [], //hourly forecast, formated for Chart
       hforecast_precip: [],
       hforecast_wind: [],
@@ -80,6 +81,7 @@ export default class Weather extends React.Component {
       let dprecip_arr = [];
       let dwind_arr = [];
       let dtime_arr = [];
+      let dicon_arr = [];
       let htemp_arr = [['Time', 'Temperature', { role: "annotation", type: "string" }]];
       let hprecip_arr = [['Time', 'Precipitation', { role: "annotation", type: "string" }]];
       let hwind_arr = [['Time', 'Wind', { role: "annotation", type: "string" }]];
@@ -91,6 +93,7 @@ export default class Weather extends React.Component {
         dtemp_arr[i] = [data.temperatureLow, data.temperatureHigh] //Celcius
         dprecip_arr[i] = data.precipProbability*100; //Decimal to Percentage
         dwind_arr[i] = data.windSpeed*3600/1000; //m/s to km/h
+        dicon_arr[i] = data.icon;
       }
 
       for (let j=0; j<12; j++){ // Chart the next 12 hours
@@ -117,6 +120,7 @@ export default class Weather extends React.Component {
         dforecast_temp: dtemp_arr,
         dforecast_precip: dprecip_arr,
         dforecast_wind: dwind_arr,
+        dforecast_icon: dicon_arr,
         hforecast_temp: htemp_arr,
         hforecast_precip: hprecip_arr,
         hforecast_wind: hwind_arr,
@@ -172,14 +176,34 @@ export default class Weather extends React.Component {
     return days[index];
   }
 
+  getIcon(icon_desc){
+    if(icon_desc.includes('cloudy')){
+      return 'cloudy.svg';
+    } else if (icon_desc.includes('rain')){
+      return 'rainy-7.svg';
+    } else if (icon_desc.includes('clear')){
+      return 'day.svg';
+    } else if (icon_desc.includes('snow')){
+      return 'snowy-6.svg';
+    } else if (icon_desc.includes('thunder')){
+      return 'thunder.svg';
+    }
+  }
+
+  renderIcon(index){
+    return (
+      <i><img src={ICON_PATH + '/' + 'animated' + '/' + this.getIcon(this.state.dforecast_icon[index])} alt='weather-icon' /></i>
+    )
+  }
+
   renderDForecastTemp(){
     let temps = [];
     for(const [index, value] of this.state.dforecast_temp.entries()){
       temps.push(
         <Cell columns={3} key={'ftemp-' + index}>
           <p><strong>{this.getDay(this.state.dforecast_datetime[index])}</strong></p>
-          <i><img src={ICON_PATH + '/' + 'animated' + '/' + 'cloudy-day-1.svg'} alt='weather-icon' /></i>
-          <p>{value[0].toFixed(0)} - {value[1].toFixed(0)}</p>
+          {this.renderIcon(index)}
+          <p>{value[0].toFixed(0)}-{value[1].toFixed(0)}&deg;C</p>
         </Cell>
       )
     }
@@ -192,6 +216,7 @@ export default class Weather extends React.Component {
       precips.push(
         <Cell columns={3} key={'fprecip-' + index}>
           <p><strong>{this.getDay(this.state.dforecast_datetime[index])}</strong></p>
+          {this.renderIcon(index)}
           <p>{(value).toFixed(0)}%</p>
         </Cell>
       )
@@ -205,6 +230,7 @@ export default class Weather extends React.Component {
       winds.push(
         <Cell columns={3} key={'fwind-' + index}>
           <p><strong>{this.getDay(this.state.dforecast_datetime[index])}</strong></p>
+          {this.renderIcon(index)}
           <p>{(value).toFixed(0)}km/h</p>
         </Cell>
       )
@@ -253,7 +279,7 @@ export default class Weather extends React.Component {
               alwaysOutside: true,
             },
             lineWidth: 4,
-            colors: ['#8C77FF'],
+            colors: ['#56A0EE','#8C77FF'],
             fontName: 'Product Sans',
             legend: 'none',
             curveType: 'function',

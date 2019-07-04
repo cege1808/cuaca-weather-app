@@ -59,17 +59,17 @@ export default class PhoneInterface extends React.Component {
   renderAppBar(){
     return (
       <TopAppBarRow>
-        <TopAppBarSection align='start' className="skinny-padding">
+        <TopAppBarSection align='start'>
           <TopAppBarIcon navIcon className="non-pointer">
             <MaterialIcon icon='cloud_queue' />
           </TopAppBarIcon>
         </TopAppBarSection>
-        <TopAppBarSection className="skinny-padding">
+        <TopAppBarSection align='middle'>
           <TopAppBarTitle className="weather-title">
-            <p> Weather</p>
+            <p>Cuaca &middot; Weather App</p>
           </TopAppBarTitle>
         </TopAppBarSection>
-        <TopAppBarSection align='end' role='toolbar' className="skinny-padding">
+        <TopAppBarSection align='end' role='toolbar'>
           <TopAppBarIcon actionItem>
             <MaterialIcon
               aria-label="add location"
@@ -114,12 +114,16 @@ export default class PhoneInterface extends React.Component {
       <Row>
         <Cell desktopColumns={4} phoneColumns={0} tabletColumns={2}></Cell>
         <Cell desktopColumns={4} phoneColumns={4} tabletColumns={4} align="middle" className="main mdc-elevation--z10 mdc-elevation-transition">
-          <TopAppBarFixedAdjust className="yellow weather-bar" dense="true">
+          <div className="info-background">
+          <div className="info-content">
+          <TopAppBarFixedAdjust className="weather-bar" dense="true">
             {this.renderPhoneBar()}
             {this.renderBar()}
           </TopAppBarFixedAdjust>
           {this.props.children}
           <Weather lat={this.state.lat} lng={this.state.lng} address={this.state.address} />
+          </div>
+          </div>
         </Cell>
       </Row>
       )
