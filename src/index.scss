@@ -94,6 +94,10 @@ code {
     monospace;
 }
 
+.phone-interface {
+  margin-top: 100px;
+}
+
 .main {
   height: $bg-height;
   border-radius: 10px;
@@ -245,7 +249,7 @@ code {
   font-size: 15px;
   display: inline-block;
   color: grey;
-  padding: 10px 0;
+  padding-top: 10px;
 }
 
 .current-detail > span {

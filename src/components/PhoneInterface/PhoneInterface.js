@@ -127,7 +127,7 @@ export default class PhoneInterface extends React.Component {
 
   render(){
     return (
-      <Row>
+      <Row className="phone-interface">
         <Cell desktopColumns={4} phoneColumns={0} tabletColumns={2}></Cell>
         <Cell desktopColumns={4} phoneColumns={4} tabletColumns={4} align="middle" className="main mdc-elevation--z10 mdc-elevation-transition">
           <div className="info-background">

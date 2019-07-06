@@ -4,8 +4,8 @@ import Tab from '@material/react-tab';
 import TabBar from '@material/react-tab-bar';
 import { Chart } from "react-google-charts";
 import './Weather.css';
-const DARKSKY_API_KEY = "0494a26ed44fe957270c49feb96e1c34"
-const ICON_PATH = "/icons/amcharts_weather_icons_1.0.0/"
+const DARKSKY_API_KEY = process.env.REACT_APP_DARKSKY_APIKEY;
+const ICON_PATH = "/icons/amcharts_weather_icons_1.0.0/";
 
 export default class Weather extends React.Component {
   constructor(props){
@@ -73,7 +73,7 @@ export default class Weather extends React.Component {
     })
     .then(response => response.json())
     .then(json => {
-      console.log(json)
+      // console.log(json)
       let current = json.currently
       let dforecast = json.daily.data
       let hforecast = json.hourly.data
@@ -192,7 +192,7 @@ export default class Weather extends React.Component {
 
   renderIcon(index){
     return (
-      <i><img src={ICON_PATH + '/' + 'animated' + '/' + this.getIcon(this.state.dforecast_icon[index])} alt='weather-icon' /></i>
+      <i><img src={`${ICON_PATH}/animated/${this.getIcon(this.state.dforecast_icon[index])}`} alt='weather-icon' /></i>
     )
   }
 
