@@ -2,6 +2,7 @@
   "name": "cuaca-weather-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://cege1808.github.io/cuaca-weather-app",
   "dependencies": {
     "@material/elevation": "^3.0.0",
     "@material/react-fab": "^0.14.0",
@@ -17,6 +18,7 @@
     "react-dom": "^16.8.6",
     "react-google-charts": "^3.0.13",
     "react-places-autocomplete": "^7.2.1",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "sass-loader": "^7.1.0",
     "webpack": "^4.29.6"
@@ -25,7 +27,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,5 +46,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
 }
