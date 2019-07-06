@@ -200,7 +200,7 @@ export default class Weather extends React.Component {
     let temps = [];
     for(const [index, value] of this.state.dforecast_temp.entries()){
       temps.push(
-        <Cell columns={3} key={'ftemp-' + index}>
+        <Cell columns={3} key={'ftemp-' + index} className="dcell">
           <p><strong>{this.getDay(this.state.dforecast_datetime[index])}</strong></p>
           {this.renderIcon(index)}
           <p>{value[0].toFixed(0)}-{value[1].toFixed(0)}&deg;C</p>
@@ -214,7 +214,7 @@ export default class Weather extends React.Component {
     let precips = [];
     for(const [index, value] of this.state.dforecast_precip.entries()){
       precips.push(
-        <Cell columns={3} key={'fprecip-' + index}>
+        <Cell columns={3} key={'fprecip-' + index} className="dcell">
           <p><strong>{this.getDay(this.state.dforecast_datetime[index])}</strong></p>
           {this.renderIcon(index)}
           <p>{(value).toFixed(0)}%</p>
@@ -228,7 +228,7 @@ export default class Weather extends React.Component {
     let winds = [];
     for(const [index, value] of this.state.dforecast_wind.entries()){
       winds.push(
-        <Cell columns={3} key={'fwind-' + index}>
+        <Cell columns={3} key={'fwind-' + index} className="dcell">
           <p><strong>{this.getDay(this.state.dforecast_datetime[index])}</strong></p>
           {this.renderIcon(index)}
           <p>{(value).toFixed(0)}km/h</p>
@@ -296,7 +296,7 @@ export default class Weather extends React.Component {
 
   render(){
     return (
-      <div>
+      <div className="content">
         <div className="current-info">
           <h1 className="current-temp">{this.handleCurrentTemp()}<sup className="current-tempdeg">{`\u00b0`}</sup></h1>
           <h3 className="no-margin current-desc">{this.state.description}</h3>

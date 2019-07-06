@@ -108,6 +108,22 @@ export default class PhoneInterface extends React.Component {
     else return this.renderAppBar()
   }
 
+  renderRainBackground(){
+    let rain_arr = [];
+    let counter = 1;
+    for(let i=0; i<6; i++){
+      rain_arr.push(<div className="raindrop light" id={"raindrop-" + counter} key={"raindrop-" + counter}></div>);
+      counter++;
+    }
+    for(let i=0; i<4; i++){
+      rain_arr.push(<div className="raindrop dark" id={"raindrop-" + counter} key={"raindrop-" + counter}></div>);
+      counter++;
+    }
+    return (
+      <div>{rain_arr}</div>
+    )
+  }
+
 
   render(){
     return (
@@ -115,14 +131,13 @@ export default class PhoneInterface extends React.Component {
         <Cell desktopColumns={4} phoneColumns={0} tabletColumns={2}></Cell>
         <Cell desktopColumns={4} phoneColumns={4} tabletColumns={4} align="middle" className="main mdc-elevation--z10 mdc-elevation-transition">
           <div className="info-background">
-          <div className="info-content">
+          {this.renderRainBackground()}
           <TopAppBarFixedAdjust className="weather-bar" dense="true">
             {this.renderPhoneBar()}
             {this.renderBar()}
           </TopAppBarFixedAdjust>
           {this.props.children}
           <Weather lat={this.state.lat} lng={this.state.lng} address={this.state.address} />
-          </div>
           </div>
         </Cell>
       </Row>

@@ -3,6 +3,7 @@ $lightgrey: #F6f6f6;
 $darkblue: #56A0EE;
 $purple: #8C77FF;
 $blue: #B9D7FF;
+$lightblue: #d6e8ff;
 $grey: #827F7F;
 $yellow: #F8CA4D;
 $bg-width: 500px;
@@ -105,24 +106,14 @@ code {
   background-image: $blue-gradient;
   border-radius: 10px;
   height: 450px;
+  position: relative;
 }
 
 .weather-bar{
   padding: 0;
   border-radius: 10px;
-}
-
-.weather-fab{
-  background-image: $yellow-gradient;
-  opacity: 10%;
-  width: 300px;
-  height: 300px;
-}
-
-.weather-fab-logo{
-  width: 150px !important;
-  height: 150px !important;
-  color: white;
+  color: $white;
+  height: 136px;
 }
 
 .rounded{
@@ -135,7 +126,6 @@ code {
 }
 
 .weather-title{
-  // padding-left: 24%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -151,14 +141,65 @@ code {
   display: inline-block;
 }
 
+.search-bar-item input {
+  color: white;
+}
+
+.mdc-notched-outline{
+  top: 54px;
+}
+
+.autocomplete-root input{
+  color: white !important;
+  border-color: white  !important;
+}
+
+.autocomplete-dropdown-container{
+  position: absolute;
+  width: 80%;
+}
+
+.suggestion-item {
+  background-color: $lightblue;
+  color: $darkblue;
+  font-size: 80%;
+  padding: 0.25em 0.7em;
+  cursor: 'pointer';
+  position: relative;
+  z-index: 50;
+}
+
+.suggestion-item.active {
+  background-color: $blue;
+}
+
 .non-pointer{
   cursor: default;
+}
+
+.content > div {
+  position: relative;
+  z-index: 20;
+}
+
+.dcell{
+  padding-top: 10px;
+}
+
+.dcell > p {
+  margin: 0;
+}
+
+.dcell img {
+  width: 80px;
+  padding: 3px;
 }
 
 .current-temp{
   font-size: 70px;
   margin-bottom: 0;
   margin-top: 30px;
+  color: $white;
 }
 
 .no-margin{
@@ -169,15 +210,18 @@ code {
 .current-tempdeg{
   font-size: 40px;
   position: absolute;
+  color: $white;
 }
 
 .current-desc{
   font-size: 30px;
   font-weight: 400;
+  color: $white;
 }
 
 .current-address{
   font-size: 20px;
+  color: $white;
 }
 
 .current-uv{
@@ -216,3 +260,80 @@ code {
 .forecast-daily {
   padding: 10px 20px;
 }
+
+.raindrop {
+  transform: rotate(-45deg);
+  height: 15px;
+  border-radius: 15px;
+  opacity: 0.2;
+  position: absolute;
+}
+
+.raindrop.dark {
+  background-color: $darkblue;
+}
+
+.raindrop.light {
+  background-color: $lightblue;
+}
+
+#raindrop-1 {
+  top: 50px;
+  left: 50px;
+  width: 150px;
+}
+
+#raindrop-2 {
+  top: 250px;
+  left: 300px;
+  width: 150px;
+}
+
+#raindrop-3 {
+  top: 210px;
+  left: 60px;
+  width: 250px;
+}
+
+#raindrop-4 {
+  top: 85px;
+  left: 360px;
+  width: 100px;
+}
+
+#raindrop-5 {
+  top: 350px;
+  left: 400px;
+  width: 67px;
+}
+
+#raindrop-6 {
+  top: 415px;
+  left: 95px;
+  width: 78px;
+}
+
+#raindrop-7 {
+  top: 50px;
+  left: -10px;
+  width: 80px;
+}
+
+#raindrop-8 {
+  top: 190px;
+  left: -10px;
+  width: 130px;
+}
+
+#raindrop-9 {
+  top: 33px;
+  left: 230px;
+  width: 110px;
+}
+
+#raindrop-10 {
+  top: 395px;
+  left: 205px;
+  width: 200px;
+}
+
