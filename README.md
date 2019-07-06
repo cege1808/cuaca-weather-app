@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Cuaca Weather App
+
+A React App made inspired by [Google's Material Design](https://material.io/design/) and [this interface made by Anuj Kumar](https://www.behance.net/gallery/72036259/Weather-App-UIUX-Design) and weather data collected from [Dark Sky](https://darksky.net/dev/docs). It has a location autocomplete feature from [Google's API](http://lortza.github.io/2018/05/15/react-google-places-autocomplete.html).
+
 
 ## Available Scripts
 
