@@ -2,7 +2,7 @@ import React from 'react';
 import PlacesAutocomplete, {geocodeByAddress} from 'react-places-autocomplete';
 import List, {ListItem, ListItemText} from '@material/react-list';
 import TextField, {Input} from '@material/react-text-field';
-import './LocationSearch.css';
+import './LocationSearch.scss';
 
 export default class LocationSearch extends React.Component {
 

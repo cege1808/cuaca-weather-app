@@ -1,0 +1,29 @@
+@import '../../utilities';
+
+.mdc-notched-outline{
+  top: 54px;
+}
+
+.autocomplete-root input{
+  color: white !important;
+  border-color: white  !important;
+}
+
+.autocomplete-dropdown-container{
+  position: absolute;
+  width: 80%;
+}
+
+.suggestion-item {
+  background-color: $lightblue;
+  color: $darkblue;
+  font-size: 80%;
+  padding: 0.25em 0.7em;
+  cursor: 'pointer';
+  position: relative;
+  z-index: 50;
+}
+
+.suggestion-item.active {
+  background-color: $blue;
+}

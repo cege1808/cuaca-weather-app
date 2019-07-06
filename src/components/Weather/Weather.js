@@ -3,7 +3,7 @@ import {Cell, Row} from '@material/react-layout-grid';
 import Tab from '@material/react-tab';
 import TabBar from '@material/react-tab-bar';
 import { Chart } from "react-google-charts";
-import './Weather.css';
+import './Weather.scss';
 const DARKSKY_API_KEY = process.env.REACT_APP_DARKSKY_APIKEY;
 const ICON_PATH = "/icons/amcharts_weather_icons_1.0.0/";
 

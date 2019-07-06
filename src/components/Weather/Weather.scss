@@ -1,0 +1,80 @@
+@import '../../utilities';
+
+.content > div {
+  position: relative;
+  z-index: 20;
+}
+
+.dcell{
+  padding-top: 10px;
+}
+
+.dcell > p {
+  margin: 0;
+}
+
+.dcell img {
+  width: 80px;
+  padding: 3px;
+}
+
+.current-temp{
+  font-size: 70px;
+  margin-bottom: 0;
+  margin-top: 30px;
+  color: $white;
+}
+
+.current-tempdeg{
+  font-size: 40px;
+  position: absolute;
+  color: $white;
+}
+
+.current-desc{
+  font-size: 30px;
+  font-weight: 400;
+  color: $white;
+}
+
+.current-address{
+  font-size: 20px;
+  color: $white;
+}
+
+.current-uv{
+  margin-bottom: 0;
+  color: $blue;
+}
+
+.current-visibility{
+  color: $blue;
+}
+
+.tab-bar{
+  width: 100%;
+  margin-top: 70px;
+  font: ProductSans;
+  color: $darkblue;
+  background-color: $lightgrey;
+}
+
+.current-detail > p {
+  font-size: 15px;
+  display: inline-block;
+  color: grey;
+  padding-top: 10px;
+}
+
+.current-detail > span {
+  font-size: 20px;
+  color: grey;
+}
+
+.forecast-hourly {
+  padding: 0 10px;
+}
+
+.forecast-daily {
+  padding: 10px 20px;
+}
