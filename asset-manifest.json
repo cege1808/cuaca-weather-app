@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/cuaca-weather-app/static/css/main.7c538f11.chunk.css",
-    "main.js": "/cuaca-weather-app/static/js/main.95256d22.chunk.js",
-    "main.js.map": "/cuaca-weather-app/static/js/main.95256d22.chunk.js.map",
+    "main.js": "/cuaca-weather-app/static/js/main.9efbd731.chunk.js",
+    "main.js.map": "/cuaca-weather-app/static/js/main.9efbd731.chunk.js.map",
     "runtime~main.js": "/cuaca-weather-app/static/js/runtime~main.a28ddbc1.js",
     "runtime~main.js.map": "/cuaca-weather-app/static/js/runtime~main.a28ddbc1.js.map",
     "static/js/2.bffab034.chunk.js": "/cuaca-weather-app/static/js/2.bffab034.chunk.js",
     "static/js/2.bffab034.chunk.js.map": "/cuaca-weather-app/static/js/2.bffab034.chunk.js.map",
     "index.html": "/cuaca-weather-app/index.html",
-    "precache-manifest.bc8afe5f22b9c8c3f608154f928b8e70.js": "/cuaca-weather-app/precache-manifest.bc8afe5f22b9c8c3f608154f928b8e70.js",
+    "precache-manifest.2e80d5177f31f14e3bf1157c341ee7f0.js": "/cuaca-weather-app/precache-manifest.2e80d5177f31f14e3bf1157c341ee7f0.js",
     "service-worker.js": "/cuaca-weather-app/service-worker.js",
     "static/css/main.7c538f11.chunk.css.map": "/cuaca-weather-app/static/css/main.7c538f11.chunk.css.map",
     "static/media/index.scss": "/cuaca-weather-app/static/media/Product Sans Regular.eae9c18c.ttf"
