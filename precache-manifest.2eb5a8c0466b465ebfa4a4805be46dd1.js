@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "69a59007e122772243ccba09b183cb31",
+    "revision": "8ef4732b35b124555e5b8183c61ed21f",
     "url": "/cuaca-weather-app/index.html"
   },
   {
-    "revision": "b807227e23285ddbdebc",
+    "revision": "099fe73c4647bba30f00",
     "url": "/cuaca-weather-app/static/css/main.7c538f11.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cuaca-weather-app/static/js/2.bffab034.chunk.js"
   },
   {
-    "revision": "b807227e23285ddbdebc",
-    "url": "/cuaca-weather-app/static/js/main.e2a2d005.chunk.js"
+    "revision": "099fe73c4647bba30f00",
+    "url": "/cuaca-weather-app/static/js/main.780a7638.chunk.js"
   },
   {
     "revision": "b3d6b4df0cd544d44600",
