@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/cuaca-weather-app/precache-manifest.17efc13f5a6103365019040277a9cb52.js"
+  "/cuaca-weather-app/precache-manifest.c297cf0831ba3b81d9c8c9a3689fee8f.js"
 );
 
 self.addEventListener('message', (event) => {
