@@ -5,7 +5,13 @@ import TabBar from '@material/react-tab-bar';
 import { Chart } from "react-google-charts";
 import './Weather.scss';
 const DARKSKY_API_KEY = process.env.REACT_APP_DARKSKY_APIKEY;
-const ICON_PATH = "/icons/amcharts_weather_icons_1.0.0/";
+
+let ICON_PATH;
+if(process.env.REACT_APP_ENV == 'production'){
+  ICON_PATH = `/${process.env.REACT_APP_PUBLIC_PATH}/icons/amcharts_weather_icons_1.0.0/`;
+} else {
+  ICON_PATH = "/icons/amcharts_weather_icons_1.0.0/";
+}
 
 export default class Weather extends React.Component {
   constructor(props){
